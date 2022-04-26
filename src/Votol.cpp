@@ -9,12 +9,21 @@
 //Intitialization function 
 void Votol_Init()
 {
+    // Set the PWM pin for the throttle to output
       pinMode(THROTTLE_FORWARD_PIN, OUTPUT);
+    // Set the reverse pin switch to output 
+      pinMode(REVERSE_PIN_SWITCH, OUTPUT);
+    // Set the High break pin switch to output 
+      pinMode(HIGH_BREAK_PIN, OUTPUT);
+    // Set the potentiometer pin to input
+      pinMode(POTENTIOMETER_PIN_NUMBER, INPUT);
+      
 }
 
 // Function to get the Potentiomete readings
 int  Get_Potentiometer_Readings (int Potentiometer_Pin_Num)
 {
+    
     int Potentiometer_Readings = analogRead(Potentiometer_Pin_Num);
     return Potentiometer_Readings ;
 }
@@ -27,3 +36,16 @@ void Votol_Forward (int Potentiometer_Readings  , int Throttle_Pin  , int Thrott
 
 }
 
+// Function to move the motor backward with PWM maped from Potentiometer values
+void Votol_Reverse(int Throttle_Pin , int Potentiometer_Readings , int Throttle_Min_Readings, int Throttle_Max_Readings, int Throttle_Min_PWM ,int Throttle_Max_PWM,int Reverse_Switch_Pin)
+{
+    // Set reverse switch on 
+    digitalWrite(Reverse_Switch_Pin,HIGH);
+    int Throttle_PWM_Value_Rev = map(Potentiometer_Readings,Throttle_Max_Readings,Throttle_Min_Readings,Throttle_Max_PWM,Throttle_Min_PWM);
+    analogWrite(Throttle_Pin, Throttle_PWM_Value_Rev);
+}
+
+void Votol_Break(int Break_Pin , int State)
+{
+    digitalWrite(Break_Pin,State);
+}
