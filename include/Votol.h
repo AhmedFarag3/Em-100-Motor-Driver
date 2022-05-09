@@ -9,7 +9,7 @@
 
 
 // Inputs pins 
-#define POTENTIOMETER_PIN_NUMBER 14
+#define POTENTIOMETER_PIN_NUMBER 22
 
 
 // Transistors Pin number 
