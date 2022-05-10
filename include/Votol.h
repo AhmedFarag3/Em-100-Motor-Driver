@@ -18,7 +18,7 @@
 // Forward motor driver parameters
 
 #define THROTTLE_FORWARD_PIN   2
-#define THROTTLE_MIN_PWM       60
+#define THROTTLE_MIN_PWM       0
 #define THROTTLE_MAX_PWM       200
 #define THROTTLE_MIN_READINGS  0
 #define THROTTLE_MAX_READINGS  600
@@ -29,7 +29,7 @@
 #define THROTTLE_REVERSE_PIN             2
 #define REVERSE_DIRECTION_SWITCH         16 
 #define THROTTLE_MIN_PWM_REVERSE        -200
-#define THROTTLE_MAX_PWM_REVERSE        -60
+#define THROTTLE_MAX_PWM_REVERSE         0
 #define THROTTLE_MIN_READINGS_REVERSE   -600
 #define THROTTLE_MAX_READINGS_REVERSE    0
 
