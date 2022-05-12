@@ -17,6 +17,8 @@ void Votol_Init()
       pinMode(HIGH_BREAK_PIN, OUTPUT);
     // Set the potentiometer pin to input
       pinMode(POTENTIOMETER_PIN_NUMBER, INPUT);
+    //Set Reverse pin to low 
+      digitalWrite(REVERSE_DIRECTION_SWITCH,LOW);
     // Set the spedometer pin to input
     //pinMode(SPEDOMETER_PIN, INPUT);
     
@@ -35,18 +37,24 @@ int  Get_Potentiometer_Readings (int Potentiometer_Pin_Num)
 void Votol_Forward (int Potentiometer_Readings  , int Throttle_Pin  , int Throttle_Min_Readings, int Throttle_Max_Readings, int Throttle_Min_PWM ,int Throttle_Max_PWM )
 {
     int Throttle_PWM_Value = map(Potentiometer_Readings,Throttle_Min_Readings,Throttle_Max_Readings,Throttle_Min_PWM,Throttle_Max_PWM);
+    Serial.print("Forward PWM ");
+    Serial.println(Throttle_PWM_Value);
+
     digitalWrite(REVERSE_DIRECTION_SWITCH,LOW);
     analogWrite(Throttle_Pin, Throttle_PWM_Value);
 
 }
 
 // Function to move the motor backward with PWM maped from Potentiometer values
-void Votol_Reverse(int Throttle_Pin , int Potentiometer_Readings , int Throttle_Min_Readings, int Throttle_Max_Readings, int Throttle_Min_PWM ,int Throttle_Max_PWM,int Reverse_Switch_Pin)
+void Votol_Reverse(int Potentiometer_Readings ,int Throttle_Pin , int Throttle_Min_Readings, int Throttle_Max_Readings, int Throttle_Min_PWM ,int Throttle_Max_PWM,int Reverse_Switch_Pin)
 {
     // Set reverse switch on 
+    
+    int Throttle_PWM_Value_Rev = map(Potentiometer_Readings,Throttle_Min_Readings,Throttle_Max_Readings,Throttle_Min_PWM,Throttle_Max_PWM);
+    Serial.print("Reverse PWM ");
+    Serial.println(Throttle_PWM_Value_Rev);
+    
     digitalWrite(Reverse_Switch_Pin,HIGH);
-
-    int Throttle_PWM_Value_Rev = map(Potentiometer_Readings,Throttle_Max_Readings,Throttle_Min_Readings,Throttle_Max_PWM,Throttle_Min_PWM);
     analogWrite(Throttle_Pin, Throttle_PWM_Value_Rev);
 }
 

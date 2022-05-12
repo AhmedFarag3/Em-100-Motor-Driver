@@ -21,7 +21,7 @@
 #define THROTTLE_MIN_PWM       0
 #define THROTTLE_MAX_PWM       200
 #define THROTTLE_MIN_READINGS  0
-#define THROTTLE_MAX_READINGS  600
+#define THROTTLE_MAX_READINGS  900
 
 
 // REVERSE motor driver parameters

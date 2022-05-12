@@ -14,6 +14,7 @@ void setup()
 {
 
   Votol_Init();
+
   Serial.begin(9600);
 }
 
@@ -31,17 +32,17 @@ void loop()
 
     Potentiometer_Readings = Get_Potentiometer_Readings(POTENTIOMETER_PIN_NUMBER);
     Serial.print("Forward: ");
-    Serial.println(Potentiometer_Readings);
+    
 
     Votol_Break(HIGH_BREAK_PIN,HIGH_BREAK_OFF_STATE);
     Votol_Forward(Potentiometer_Readings, THROTTLE_FORWARD_PIN, THROTTLE_MIN_READINGS, THROTTLE_MAX_READINGS, THROTTLE_MIN_PWM, THROTTLE_MAX_PWM);
   }
   if (c == 'R')
   {
-    Serial.print("Reverse: ");
-    Serial.println(Potentiometer_Readings);
-
     Potentiometer_Readings = Get_Potentiometer_Readings(POTENTIOMETER_PIN_NUMBER);
+    Serial.print("Reverse: ");
+    
+
     Votol_Break(HIGH_BREAK_PIN, HIGH_BREAK_OFF_STATE);
     // In this function call we will pass the arguments of the function as same as the forward since we are not using slider throttle with negative values
     Votol_Reverse(Potentiometer_Readings, THROTTLE_FORWARD_PIN, THROTTLE_MIN_READINGS, THROTTLE_MAX_READINGS, THROTTLE_MIN_PWM, THROTTLE_MAX_PWM, REVERSE_DIRECTION_SWITCH);
